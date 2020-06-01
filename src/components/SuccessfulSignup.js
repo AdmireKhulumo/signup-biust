@@ -6,8 +6,22 @@ import logosmall from "../images/biust_logo_small.png";
 function SuccessfulSignup(props) {
 	console.log(props.qrData);
 
+	//QR code link
+	const downloadQR = () => {
+		const canvas = document.getElementById("qrcodecanvas");
+		const pngUrl = canvas
+			.toDataURL("image/png")
+			.replace("image/png", "image/octet-stream");
+		let downloadLink = document.createElement("a");
+		downloadLink.href = pngUrl;
+		downloadLink.download = "qrcodecanvas.png";
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	};
+
 	//email template to send
-	const emailHTML = renderEmail(
+	/*const emailHTML = renderEmail(
 		<Email title="Hello World!">
 			<Item align="center">
 				<Span fontSize={20}>
@@ -46,15 +60,16 @@ function SuccessfulSignup(props) {
 			.catch((error) => {
 				console.log(error);
 			});
-	}
+	}*/
 
 	return (
 		<div>
 			<p>Sucess Message</p>
 			<QRCode
+				id="qrcodecanvas"
 				value={props.qrData}
 				size={300}
-				renderAs={"svg"}
+				includeMargin={true}
 				imageSettings={{
 					src: { logosmall },
 					x: null,
@@ -64,6 +79,7 @@ function SuccessfulSignup(props) {
 					excavate: true
 				}}
 			/>
+			<a onClick={downloadQR}> Download QR </a>
 		</div>
 	);
 }

@@ -94,7 +94,7 @@ export default function SignUp() {
 						});
 					console.log("successful signup");
 					const num = Math.floor(Math.random() * 10000) + 1000;
-					setQrData(`students_${studentId.value}_${num}`);
+					setQrData(`BIUST_students_${studentId.value}_${num}`);
 					setSuccess(true);
 				}
 			})
