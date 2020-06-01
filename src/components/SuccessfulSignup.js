@@ -3,7 +3,22 @@ import QRCode from "qrcode.react";
 import { Email, Item, Span, A, renderEmail } from "react-html-email";
 import logosmall from "../images/biust_logo_small.png";
 
+//MUI
+import { Typography, Button } from "@material-ui/core";
+import SaveIcon from "@material-ui/icons/Save";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+	main: {
+		display: "flex",
+		marginTop: theme.spacing(1),
+		flexDirection: "column",
+		alignItems: "center"
+	}
+}));
+
 function SuccessfulSignup(props) {
+	const classes = useStyles();
 	console.log(props.qrData);
 
 	//QR code link
@@ -63,23 +78,35 @@ function SuccessfulSignup(props) {
 	}*/
 
 	return (
-		<div>
-			<p>Sucess Message</p>
+		<div className={classes.main}>
+			<Typography variant="overline" style={{ color: "#32CD32" }}>
+				<strong>Click below to save your QR Code.</strong>
+			</Typography>
 			<QRCode
 				id="qrcodecanvas"
 				value={props.qrData}
-				size={300}
+				size={350}
 				includeMargin={true}
+				level={"H"}
 				imageSettings={{
-					src: { logosmall },
+					src: logosmall,
 					x: null,
 					y: null,
-					height: 25,
-					width: 25,
+					height: 50,
+					width: 50,
 					excavate: true
 				}}
 			/>
-			<a onClick={downloadQR}> Download QR </a>
+
+			<Button
+				onClick={downloadQR}
+				variant="contained"
+				color="primary"
+				size="large"
+				startIcon={<SaveIcon />}
+			>
+				Save QR Code
+			</Button>
 		</div>
 	);
 }

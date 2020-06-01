@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import Staff from "./components/Staff";
 import Student from "./components/Student";
+import Navbar from "./components/Navbar";
+import logo from "./images/biust-logo.png";
 
 //MUI
 import Avatar from "@material-ui/core/Avatar";
@@ -15,14 +17,39 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import {
+	makeStyles,
+	MuiThemeProvider,
+	createMuiTheme
+} from "@material-ui/core/styles";
+
+//Creating Global MUI Theme
+const theme = createMuiTheme({
+	palette: {
+		primary: {
+			main: "#f68951",
+			light: "#33eaff",
+			dark: "#00a0b2",
+			contrastText: "#ffff"
+		},
+		secondary: {
+			main: "#fff",
+			light: "#53c8ee",
+			dark: "#00a0b2",
+			contrastText: "#ffff"
+		}
+	},
+	typography: {
+		useNextVariants: true
+	}
+});
 
 function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{"Copyright © "}
-			<Link color="inherit" href="https://material-ui.com/">
+			<Link color="inherit" href="https://www.biust.ac.bw/">
 				BIUST
 			</Link>{" "}
 			{new Date().getFullYear()}
@@ -60,45 +87,50 @@ function App() {
 	console.log(signupType);
 
 	return (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
-			<div className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Sign up
-				</Typography>
-				<Typography variant="overline" style={{ marginTop: "10px" }}>
-					Signup As:{" "}
-				</Typography>
-				<Button
-					onClick={() => setSignupType("student")}
-					fullWidth
-					variant="contained"
-					color="primary"
-					className={classes.mainBtn}
-				>
-					Student
-				</Button>
-				<Button
-					onClick={() => setSignupType("staff")}
-					fullWidth
-					variant="contained"
-					color="primary"
-					className={classes.mainBtn}
-				>
-					Staff Member
-				</Button>
+		<MuiThemeProvider theme={theme}>
+			<Navbar />
+			<Container component="main" maxWidth="xs">
+				<CssBaseline />
+				<div className={classes.paper}>
+					<img src={logo} width="200px" height="94px" />
+					<Typography component="h1" variant="h5" style={{ marginTop: "10px" }}>
+						<strong>Sign Up</strong>
+					</Typography>
+					<Typography variant="overline" style={{ marginTop: "10px" }}>
+						Signup As:{" "}
+					</Typography>
+					<Button
+						onClick={() => setSignupType("student")}
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.mainBtn}
+					>
+						<Typography variant="button" color="secondary">
+							<strong>STUDENT</strong>
+						</Typography>
+					</Button>
+					<Button
+						onClick={() => setSignupType("staff")}
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.mainBtn}
+					>
+						<Typography variant="button" color="secondary.light">
+							<strong>Staff Member</strong>
+						</Typography>
+					</Button>
 
-				{signupType === "student" && <Student />}
-				{signupType === "staff" && <Staff />}
-			</div>
+					{signupType === "student" && <Student />}
+					{signupType === "staff" && <Staff />}
+				</div>
 
-			<Box mt={5}>
-				<Copyright />
-			</Box>
-		</Container>
+				<Box mt={5}>
+					<Copyright />
+				</Box>
+			</Container>
+		</MuiThemeProvider>
 	);
 }
 
