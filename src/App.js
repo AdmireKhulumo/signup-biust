@@ -46,7 +46,7 @@ function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{"Copyright © "}
-			<Link color="primary" href="https://www.biust.ac.bw/">
+			<Link color="primary" href="https://www.biust.ac.bw/" target="_blank">
 				BIUST
 			</Link>{" "}
 			{new Date().getFullYear()}
