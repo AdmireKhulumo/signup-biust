@@ -51,10 +51,6 @@ export default function Student() {
 	const [success, setSuccess] = useState(false);
 	const [qrData, setQrData] = useState("");
 
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -114,7 +110,7 @@ export default function Student() {
 
 	return (
 		<div>
-			{success == false && (
+			{success === false && (
 				<form className={classes.form} noValidate onSubmit={submitDetails}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6}>
@@ -247,7 +243,7 @@ export default function Student() {
 				</form>
 			)}
 
-			{success == true && <SuccessfulSignup qrData={qrData} />}
+			{success === true && <SuccessfulSignup qrData={qrData} />}
 
 			{/*--------Dialogue For Already existing document-------*/}
 			<div>

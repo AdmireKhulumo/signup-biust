@@ -6,10 +6,6 @@ import SuccessfulSignup from "./SuccessfulSignup";
 import { makeStyles } from "@material-ui/core/styles";
 import {
 	Button,
-	Radio,
-	RadioGroup,
-	FormControlLabel,
-	FormLabel,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -50,10 +46,6 @@ export default function Staff() {
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [qrData, setQrData] = useState("");
-
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
 
 	const handleClose = () => {
 		setOpen(false);
@@ -110,7 +102,7 @@ export default function Staff() {
 
 	return (
 		<div>
-			{success == false && (
+			{success === false && (
 				<form className={classes.form} noValidate onSubmit={submitDetails}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6}>
@@ -198,16 +190,14 @@ export default function Staff() {
 							/>
 						</Grid>
 						<Grid item xs={12}>
-							<FormLabel component="legend">Office?</FormLabel>
-							<RadioGroup
-								aria-label="office"
-								name="office"
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
 								id="office"
-								className={classes.radio}
-							>
-								<FormControlLabel value="yes" control={<Radio />} label="YES" />
-								<FormControlLabel value="no" control={<Radio />} label="NO" />
-							</RadioGroup>
+								label="Office Location/Number"
+								name="office"
+							/>
 						</Grid>
 					</Grid>
 					<Button
@@ -222,7 +212,7 @@ export default function Staff() {
 				</form>
 			)}
 
-			{success == true && <SuccessfulSignup qrData={qrData} />}
+			{success === true && <SuccessfulSignup qrData={qrData} />}
 
 			{/*--------Dialogue For Already existing document-------*/}
 			<div>

@@ -6,16 +6,10 @@ import Navbar from "./components/Navbar";
 import logo from "./images/biust-logo.png";
 
 //MUI
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import {
@@ -38,6 +32,9 @@ const theme = createMuiTheme({
 			light: "#53c8ee",
 			dark: "#00a0b2",
 			contrastText: "#ffff"
+		},
+		textPrimary: {
+			main: "#fff"
 		}
 	},
 	typography: {
@@ -49,7 +46,7 @@ function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{"Copyright © "}
-			<Link color="inherit" href="https://www.biust.ac.bw/">
+			<Link color="primary" href="https://www.biust.ac.bw/">
 				BIUST
 			</Link>{" "}
 			{new Date().getFullYear()}
@@ -84,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 	const classes = useStyles();
 	const [signupType, setSignupType] = useState("");
-	console.log(signupType);
 
 	return (
 		<MuiThemeProvider theme={theme}>
@@ -92,7 +88,7 @@ function App() {
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
 				<div className={classes.paper}>
-					<img src={logo} width="200px" height="94px" />
+					<img src={logo} width="200px" height="94px" alt="biust logo" />
 					<Typography component="h1" variant="h5" style={{ marginTop: "10px" }}>
 						<strong>Sign Up</strong>
 					</Typography>
@@ -106,7 +102,7 @@ function App() {
 						color="primary"
 						className={classes.mainBtn}
 					>
-						<Typography variant="button" color="secondary.light">
+						<Typography variant="button">
 							<strong>STUDENT</strong>
 						</Typography>
 					</Button>
@@ -117,7 +113,7 @@ function App() {
 						color="primary"
 						className={classes.mainBtn}
 					>
-						<Typography variant="button" color="secondary.light">
+						<Typography variant="button">
 							<strong>Staff Member</strong>
 						</Typography>
 					</Button>
