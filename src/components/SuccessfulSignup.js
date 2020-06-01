@@ -4,7 +4,15 @@ import { Email, Item, Span, A, renderEmail } from "react-html-email";
 import logosmall from "../images/biust_logo_small.png";
 
 //MUI
-import { Typography, Button } from "@material-ui/core";
+import {
+	Typography,
+	Button,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormControl,
+	FormLabel
+} from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -99,6 +107,7 @@ function SuccessfulSignup(props) {
 			/>
 
 			<Button
+				style={{ marginTop: "10px" }}
 				onClick={downloadQR}
 				variant="contained"
 				color="primary"

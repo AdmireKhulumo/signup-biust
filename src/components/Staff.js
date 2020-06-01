@@ -1,17 +1,22 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from "react";
+import { db } from "../firebase";
+import SuccessfulSignup from "./SuccessfulSignup";
+
+//MUI
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import {
+	Button,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormLabel,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	Grid,
+	TextField
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -26,71 +31,219 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2)
+	},
+	radio: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	radioSet: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center"
 	}
 }));
 
-export default function SignUp() {
+export default function Staff() {
 	const classes = useStyles();
+	const [open, setOpen] = useState(false);
+	const [error, setError] = useState("");
+	const [success, setSuccess] = useState(false);
+	const [qrData, setQrData] = useState("");
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const submitDetails = (e) => {
+		e.preventDefault();
+		const {
+			fName,
+			sName,
+			email,
+			employeeId,
+			officialId,
+			contactNum,
+			physicalAdd,
+			office,
+			department
+		} = e.target.elements;
+
+		//Checking if email already exists in db
+		db.collection("staff")
+			.doc(`${employeeId.value}`)
+			.get()
+			.then(function (doc) {
+				if (doc.exists) {
+					setError("Employee ID Alreaddy Exists.");
+					setOpen(true);
+				} else {
+					db.collection("staff")
+						.doc(`${employeeId.value}`)
+						.set({
+							name: `${fName.value} ${sName.value}`,
+							email: email.value,
+							employeeId: employeeId.value,
+							officialId: officialId.value,
+							contactNum: contactNum.value,
+							physicalAdd: physicalAdd.value,
+							office: office.value,
+							department: department.value
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+					console.log("successful signup");
+					const num = Math.floor(Math.random() * 10000) + 1000;
+					setQrData(`BIUST_staff_${employeeId.value}_${num}`);
+					setSuccess(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	return (
-		<form className={classes.form} noValidate>
-			<Grid container spacing={2}>
-				<Grid item xs={12} sm={6}>
-					<TextField
-						autoComplete="fname"
-						name="firstName"
-						variant="outlined"
-						required
+		<div>
+			{success == false && (
+				<form className={classes.form} noValidate onSubmit={submitDetails}>
+					<Grid container spacing={2}>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								//autoComplete="fname"
+								name="fName"
+								variant="outlined"
+								required
+								fullWidth
+								id="fName"
+								label="First Name"
+								autoFocus
+							/>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="sName"
+								label="Last Name"
+								name="sName"
+								//autoComplete="lname"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="email"
+								label="Email Address"
+								name="email"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="employeeId"
+								label="Employee ID"
+								name="employeeId"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="officialId"
+								label="Official ID"
+								name="officialId"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="contactNum"
+								label="Contact Number"
+								name="contactNum"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="physicalAdd"
+								label="Physical Address"
+								name="physicalAdd"
+							/>
+						</Grid>
+
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="department"
+								label="Department"
+								name="department"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<FormLabel component="legend">Office?</FormLabel>
+							<RadioGroup
+								aria-label="office"
+								name="office"
+								id="office"
+								className={classes.radio}
+							>
+								<FormControlLabel value="yes" control={<Radio />} label="YES" />
+								<FormControlLabel value="no" control={<Radio />} label="NO" />
+							</RadioGroup>
+						</Grid>
+					</Grid>
+					<Button
+						type="submit"
 						fullWidth
-						id="firstName"
-						label="First Name"
-						autoFocus
-					/>
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<TextField
-						variant="outlined"
-						required
-						fullWidth
-						id="lastName"
-						label="Last Name"
-						name="lastName"
-						autoComplete="lname"
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<TextField
-						variant="outlined"
-						required
-						fullWidth
-						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="email"
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<TextField
-						variant="outlined"
-						required
-						fullWidth
-						name="password"
-						label="Password"
-						type="password"
-						id="password"
-						autoComplete="current-password"
-					/>
-				</Grid>
-			</Grid>
-			<Button
-				type="submit"
-				fullWidth
-				variant="contained"
-				color="primary"
-				className={classes.submit}
-			>
-				Sign Up
-			</Button>
-		</form>
+						variant="contained"
+						color="primary"
+						className={classes.submit}
+					>
+						<strong>Sign Up</strong>
+					</Button>
+				</form>
+			)}
+
+			{success == true && <SuccessfulSignup qrData={qrData} />}
+
+			{/*--------Dialogue For Already existing document-------*/}
+			<div>
+				<Dialog
+					open={open}
+					onClose={handleClose}
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DialogContent>
+						<DialogContentText id="alert-dialog-description">
+							{error} Please try again or contact admin.
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={handleClose} color="primary" autoFocus>
+							OK
+						</Button>
+					</DialogActions>
+				</Dialog>
+			</div>
+		</div>
 	);
 }

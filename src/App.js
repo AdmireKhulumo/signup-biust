@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 			contrastText: "#ffff"
 		},
 		secondary: {
-			main: "#fff",
+			main: "#f68951",
 			light: "#53c8ee",
 			dark: "#00a0b2",
 			contrastText: "#ffff"
@@ -106,7 +106,7 @@ function App() {
 						color="primary"
 						className={classes.mainBtn}
 					>
-						<Typography variant="button" color="secondary">
+						<Typography variant="button" color="secondary.light">
 							<strong>STUDENT</strong>
 						</Typography>
 					</Button>

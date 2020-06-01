@@ -3,23 +3,20 @@ import { db } from "../firebase";
 import SuccessfulSignup from "./SuccessfulSignup";
 
 //MUI
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+	Button,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormLabel,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	Grid,
+	TextField
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -34,10 +31,20 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2)
+	},
+	radio: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	radioSet: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center"
 	}
 }));
 
-export default function SignUp() {
+export default function Student() {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 	const [error, setError] = useState("");
@@ -93,6 +100,8 @@ export default function SignUp() {
 							console.log(error);
 						});
 					console.log("successful signup");
+					console.log(incampus.value);
+					console.log(education.value);
 					const num = Math.floor(Math.random() * 10000) + 1000;
 					setQrData(`BIUST_students_${studentId.value}_${num}`);
 					setSuccess(true);
@@ -181,26 +190,40 @@ export default function SignUp() {
 								name="physicalAdd"
 							/>
 						</Grid>
+
 						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								id="incampus"
-								label="On Campus?"
+							<FormLabel component="legend">On Campus Resident?</FormLabel>
+							<RadioGroup
+								aria-label="incampus"
 								name="incampus"
-							/>
+								id="incampus"
+								className={classes.radio}
+							>
+								<FormControlLabel value="yes" control={<Radio />} label="YES" />
+								<FormControlLabel value="no" control={<Radio />} label="NO" />
+							</RadioGroup>
 						</Grid>
 						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								id="education"
-								label="Educational Level"
+							<FormLabel component="legend">Current Level Of Study</FormLabel>
+							<RadioGroup
+								aria-label="education"
 								name="education"
-							/>
+								id="education"
+								className={classes.radio}
+							>
+								<FormControlLabel
+									value="UG"
+									control={<Radio />}
+									label="Undergraduate"
+								/>
+								<FormControlLabel
+									value="PG"
+									control={<Radio />}
+									label="Postgraduate"
+								/>
+							</RadioGroup>
 						</Grid>
+
 						<Grid item xs={12}>
 							<TextField
 								variant="outlined"
@@ -219,7 +242,7 @@ export default function SignUp() {
 						color="primary"
 						className={classes.submit}
 					>
-						Sign Up
+						<strong>Sign Up</strong>
 					</Button>
 				</form>
 			)}
