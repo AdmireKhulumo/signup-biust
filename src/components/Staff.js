@@ -11,7 +11,11 @@ import {
 	DialogContent,
 	DialogContentText,
 	Grid,
-	TextField
+	TextField,
+	FormLabel,
+	RadioGroup,
+	FormControlLabel,
+	Radio
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,6 +61,7 @@ export default function Staff() {
 			fName,
 			sName,
 			email,
+			gender,
 			employeeId,
 			officialId,
 			contactNum,
@@ -84,7 +89,8 @@ export default function Staff() {
 							contactNum: contactNum.value,
 							physicalAdd: physicalAdd.value,
 							office: office.value,
-							department: department.value
+							department: department.value,
+							gender: gender.value
 						})
 						.catch((error) => {
 							console.log(error);
@@ -127,6 +133,24 @@ export default function Staff() {
 								name="sName"
 								//autoComplete="lname"
 							/>
+						</Grid>
+						<Grid item xs={12} className={classes.radio}>
+							<FormLabel component="legend" style={{ marginRight: "25px" }}>
+								Gender:{" "}
+							</FormLabel>
+							<RadioGroup
+								aria-label="gender"
+								name="gender"
+								id="gender"
+								className={classes.radio}
+							>
+								<FormControlLabel value="M" control={<Radio />} label="Male" />
+								<FormControlLabel
+									value="F"
+									control={<Radio />}
+									label="Female"
+								/>
+							</RadioGroup>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField

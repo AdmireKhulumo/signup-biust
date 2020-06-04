@@ -61,6 +61,7 @@ export default function Student() {
 			fName,
 			sName,
 			email,
+			gender,
 			studentId,
 			officialId,
 			contactNum,
@@ -84,6 +85,7 @@ export default function Student() {
 						.set({
 							name: `${fName.value} ${sName.value}`,
 							email: email.value,
+							gender: gender.value,
 							studentId: studentId.value,
 							officialId: officialId.value,
 							contactNum: contactNum.value,
@@ -136,6 +138,24 @@ export default function Student() {
 								//autoComplete="lname"
 							/>
 						</Grid>
+						<Grid item xs={12} className={classes.radio}>
+							<FormLabel component="legend" style={{ marginRight: "25px" }}>
+								Gender:{" "}
+							</FormLabel>
+							<RadioGroup
+								aria-label="gender"
+								name="gender"
+								id="gender"
+								className={classes.radio}
+							>
+								<FormControlLabel value="M" control={<Radio />} label="Male" />
+								<FormControlLabel
+									value="F"
+									control={<Radio />}
+									label="Female"
+								/>
+							</RadioGroup>
+						</Grid>
 						<Grid item xs={12}>
 							<TextField
 								variant="outlined"
@@ -187,8 +207,10 @@ export default function Student() {
 							/>
 						</Grid>
 
-						<Grid item xs={12}>
-							<FormLabel component="legend">On Campus Resident?</FormLabel>
+						<Grid item xs={12} className={classes.radio}>
+							<FormLabel component="legend" style={{ marginRight: "15px" }}>
+								On Campus Resident?
+							</FormLabel>
 							<RadioGroup
 								aria-label="incampus"
 								name="incampus"
@@ -200,7 +222,7 @@ export default function Student() {
 							</RadioGroup>
 						</Grid>
 						<Grid item xs={12}>
-							<FormLabel component="legend">Current Level Of Study</FormLabel>
+							<FormLabel component="legend">Current Level Of Study: </FormLabel>
 							<RadioGroup
 								aria-label="education"
 								name="education"

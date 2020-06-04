@@ -29,10 +29,10 @@ function SuccessfulSignup(props) {
 			.replace("image/png", "image/octet-stream");
 		let downloadLink = document.createElement("a");
 		downloadLink.href = pngUrl;
-		downloadLink.download = "qrcodecanvas.png";
+		downloadLink.download = "yourqrcode.png";
+		console.log(downloadLink);
 		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		document.body.removeChild(downloadLink);
+		downloadLink.document.body.removeChild(downloadLink);
 	};
 
 	//email template to send
