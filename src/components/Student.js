@@ -98,8 +98,6 @@ export default function Student() {
 							console.log(error);
 						});
 					console.log("successful signup");
-					console.log(incampus.value);
-					console.log(education.value);
 					const num = Math.floor(Math.random() * 10000) + 1000;
 					setQrData(`BIUST_students_${studentId.value}_${num}`);
 					setSuccess(true);

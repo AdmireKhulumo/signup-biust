@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 function SuccessfulSignup(props) {
 	const classes = useStyles();
-	console.log(props.qrData);
 
 	//QR code link
 	const downloadQR = () => {
@@ -29,10 +28,10 @@ function SuccessfulSignup(props) {
 			.replace("image/png", "image/octet-stream");
 		let downloadLink = document.createElement("a");
 		downloadLink.href = pngUrl;
-		downloadLink.download = "yourqrcode.png";
-		console.log(downloadLink);
+		downloadLink.download = "qrcodecanvas.png";
 		document.body.appendChild(downloadLink);
-		downloadLink.document.body.removeChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
 	};
 
 	//email template to send
