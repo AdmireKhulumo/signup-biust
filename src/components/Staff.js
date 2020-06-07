@@ -70,6 +70,23 @@ export default function Staff() {
 			department
 		} = e.target.elements;
 
+		if (
+			!fName.value ||
+			!sName.value ||
+			!email.value ||
+			!gender.value ||
+			!employeeId.value ||
+			!officialId.value ||
+			!contactNum.value ||
+			!physicalAdd.value ||
+			!office.value ||
+			!department.value
+		) {
+			setError("Please Fill In All Fields!");
+			setOpen(true);
+			return "";
+		}
+
 		//Checking if email already exists in db
 		db.collection("staff")
 			.doc(`${employeeId.value}`)

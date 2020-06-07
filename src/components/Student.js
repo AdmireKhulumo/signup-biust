@@ -71,6 +71,24 @@ export default function Student() {
 			programme
 		} = e.target.elements;
 
+		if (
+			!fName.value ||
+			!sName.value ||
+			!email.value ||
+			!gender.value ||
+			!studentId.value ||
+			!officialId.value ||
+			!contactNum.value ||
+			!physicalAdd.value ||
+			!incampus.value ||
+			!education.value ||
+			!programme.value
+		) {
+			setError("Please Fill In All Fields!");
+			setOpen(true);
+			return "";
+		}
+
 		//Checking if email already exists in db
 		db.collection("students")
 			.doc(`${studentId.value}`)
