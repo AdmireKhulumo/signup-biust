@@ -88,7 +88,14 @@ function App() {
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
 				<div className={classes.paper}>
-					<img src={logo} width="250px" height="140px" alt="biust logo" />
+					<img
+						src={logo}
+						width="250px"
+						height="140px"
+						alt="biust logo"
+						onClick={() => window.location.reload()}
+						style={{ cursor: "pointer" }}
+					/>
 					<Typography component="h1" variant="h5" style={{ marginTop: "10px" }}>
 						<strong>Sign Up</strong>
 					</Typography>

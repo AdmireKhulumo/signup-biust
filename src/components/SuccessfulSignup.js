@@ -107,6 +107,9 @@ function SuccessfulSignup(props) {
 			>
 				Save QR Code
 			</Button>
+			<Typography variant="caption" style={{ marginTop: "15px" }}>
+				<i>Click On BIUST logo to signup again.</i>
+			</Typography>
 		</div>
 	);
 }
