@@ -1,14 +1,14 @@
 import firebase from "firebase";
 
 var config = {
-	apiKey: "AIzaSyCxBAHorVgvdM8nRtb__ri3GsxFYBgubtI",
-	authDomain: "biustregister.firebaseapp.com",
-	databaseURL: "https://biustregister.firebaseio.com",
-	projectId: "biustregister",
-	storageBucket: "biustregister.appspot.com",
-	messagingSenderId: "100250685493",
-	appId: "1:100250685493:web:a17a0f3ca2dfc85f3ba17c",
-	measurementId: "G-SWGKQ8C5QT"
+	apiKey: "AIzaSyCFmHiufk-yZfNA4tY7um3PuRElYG1dGKg",
+	authDomain: "biustregister-7e90d.firebaseapp.com",
+	databaseURL: "https://biustregister-7e90d.firebaseio.com",
+	projectId: "biustregister-7e90d",
+	storageBucket: "biustregister-7e90d.appspot.com",
+	messagingSenderId: "52469479805",
+	appId: "1:52469479805:web:ff8c44a609b66d1c077414",
+	measurementId: "G-W3DJD6WKS4"
 };
 
 const firebaseApp = firebase.initializeApp(config);
