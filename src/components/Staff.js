@@ -195,7 +195,7 @@ export default function Staff() {
 								required
 								fullWidth
 								id="officialId"
-								label="Official ID"
+								label="Omang/Passport Number"
 								name="officialId"
 							/>
 						</Grid>
@@ -205,7 +205,7 @@ export default function Staff() {
 								required
 								fullWidth
 								id="contactNum"
-								label="Contact Number"
+								label="Phone Number"
 								name="contactNum"
 							/>
 						</Grid>
