@@ -265,7 +265,8 @@ export default function Staff() {
 				>
 					<DialogContent>
 						<DialogContentText id="alert-dialog-description">
-							{error} Please try again or contact admin.
+							{error} Try again or email admin at <i>covidbiust@biust.ac.bw</i>{" "}
+							for help.
 						</DialogContentText>
 					</DialogContent>
 					<DialogActions>

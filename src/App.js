@@ -44,14 +44,19 @@ const theme = createMuiTheme({
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{"Copyright © "}
-			<Link color="primary" href="https://www.biust.ac.bw/" target="_blank">
-				BIUST
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
+		<div>
+			<Typography variant="body2" color="textSecondary" align="center">
+				<i>For any issues email admin at covidbiust@biust.ac.bw</i>
+			</Typography>
+			<Typography variant="body2" color="textSecondary" align="center">
+				{"Copyright © "}
+				<Link color="primary" href="https://www.biust.ac.bw/" target="_blank">
+					BIUST
+				</Link>{" "}
+				{new Date().getFullYear()}
+				{"."}
+			</Typography>
+		</div>
 	);
 }
 
