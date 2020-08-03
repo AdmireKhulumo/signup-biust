@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Description
+This is the signup page for the Botswana International University of Science and Technology's (BIUST) movement control system. It produces a unique QR code for each student and staff member, allowing them to be identified through it whenever they enter any building on campus.
+
+##### PROBLEM: 
+People having to register manually when getting temperature taken as they enter a building in the BIUST campus. Leads to long lines and increased risk of getting Covid-19.
+
+##### SOLUTION: 
+An automated system that scans an individual's unique details, picks up his/her data from the database, and then only temperature is logged into the system by the guard in control.
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
