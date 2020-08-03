@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Staff from "./components/Staff";
 import Student from "./components/Student";
+import LostQr from "./components/LostQr";
 import Navbar from "./components/Navbar";
 import logo from "./images/biust-logo.png";
 
@@ -46,15 +47,18 @@ function Copyright() {
 	return (
 		<div>
 			<Typography variant="body2" color="textSecondary" align="center">
-				<i>For any issues email admin at covidbiust@biust.ac.bw</i>
+				<i>
+					For any issues email admin at covidbiust@biust.ac.bw . Please include
+					your student/staff ID number.
+				</i>
 			</Typography>
+			<br />
 			<Typography variant="body2" color="textSecondary" align="center">
-				{"Copyright © "}
-				<Link color="primary" href="https://www.biust.ac.bw/" target="_blank">
-					BIUST
-				</Link>{" "}
-				{new Date().getFullYear()}
-				{"."}
+				<i>
+					{"Copyright © BIUST Innovation Club "}
+					{new Date().getFullYear()}
+					{"."}
+				</i>
 			</Typography>
 		</div>
 	);
@@ -130,8 +134,21 @@ function App() {
 						</Typography>
 					</Button>
 
+					<Button
+						onClick={() => setSignupType("lostQr")}
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.mainBtn}
+					>
+						<Typography variant="button">
+							<strong>Retrieve Your QR Code</strong>
+						</Typography>
+					</Button>
+
 					{signupType === "student" && <Student />}
 					{signupType === "staff" && <Staff />}
+					{signupType === "lostQr" && <LostQr />}
 				</div>
 
 				<Box mt={5}>

@@ -59,7 +59,7 @@ export default function MenuAppBar(props) {
 								}}
 							>
 								<Typography variant="h4" className={classes.title}>
-									<strong> BIUST REGISTER</strong>
+									<strong> BIUST Covid-19 E-Register</strong>
 								</Typography>
 							</div>
 						</Toolbar>

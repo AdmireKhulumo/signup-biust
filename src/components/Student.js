@@ -294,7 +294,7 @@ export default function Student() {
 					<DialogContent>
 						<DialogContentText id="alert-dialog-description">
 							{error} Try again or email admin at <i>covidbiust@biust.ac.bw</i>{" "}
-							for help.
+							for help. Please include your student/staff ID number.
 						</DialogContentText>
 					</DialogContent>
 					<DialogActions>
